@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SoldSocial.ai | Done-for-you social media for real estate agents</title>
+<meta name="description" content="SoldSocial writes, designs, and schedules your real estate social content for you. You approve, it posts, you sell homes.">
+<!-- TODO(deploy): swap og:image/og:url to absolute production URLs -->
+<meta property="og:title" content="SoldSocial.ai | The agent they keep seeing is the agent they call.">
+<meta property="og:description" content="Done-for-you social media for real estate agents. Your voice, your brand, your market. $149 a month.">
+<meta property="og:image" content="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-listing.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23e8894a'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-weight='700' font-size='40' fill='%231d2a32' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1d2a32;
+    --ink-60: #55636d;
+    --paper: #f6f1e7;
+    --paper-deep: #ede4d3;
+    --orange: #e8894a;
+    --teal: #14586e;
+    --rule: rgba(29,42,50,.85);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 1.14rem;
+    background-color: var(--paper);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: clip;
+  }
+  .mono { font-family: "DM Mono", monospace; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; }
+  h1, h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -0.015em; }
+  a { color: inherit; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 28px; }
+
+  /* reveal on scroll */
+  .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+  .rv.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rv { opacity: 1; transform: none; }
+  }
+
+  /* masthead */
+  .ticker { background: var(--ink); color: var(--paper); padding: 9px 0; white-space: nowrap; overflow: hidden; }
+  .ticker-track { display: inline-block; animation: tick 36s linear infinite; }
+  .ticker:hover .ticker-track { animation-play-state: paused; }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .masthead { border-bottom: 2px solid var(--rule); position: relative; z-index: 5; }
+  .masthead-inner { display: flex; align-items: baseline; justify-content: space-between; padding: 22px 28px 18px; max-width: 1140px; margin: 0 auto; }
+  .logo { font-family: "Fraunces", serif; font-weight: 700; font-size: 1.5rem; text-decoration: none; }
+  .logo .dot { color: var(--orange); }
+  .masthead a.cta { text-decoration: none; border-bottom: 2px solid var(--orange); padding-bottom: 2px; font-family: "DM Mono", monospace; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; transition: color .2s ease; cursor: pointer; }
+  .masthead a.cta:hover { color: var(--orange); }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+  /* hero */
+  .hero { padding: 84px 0 40px; position: relative; }
+  .hero .kicker { color: var(--teal); margin-bottom: 26px; display: flex; align-items: center; gap: 14px; }
+  .hero .kicker::before { content: ""; width: 44px; height: 2px; background: var(--teal); display: inline-block; }
+  h1 { font-size: clamp(2.7rem, 7.2vw, 5.4rem); line-height: 1.02; max-width: 11.5em; }
+  h1 .fancy { font-style: italic; font-weight: 500; color: var(--orange); }
+  .hero-row { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 48px; align-items: end; margin-top: 40px; }
+  .lede { font-size: 1.3rem; line-height: 1.5; max-width: 30em; }
+  .lede strong { font-weight: 500; background: linear-gradient(transparent 62%, rgba(232,137,74,.45) 62%); }
+  .hero-actions { margin-top: 34px; display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; background: var(--ink); color: var(--paper); text-decoration: none;
+    font-family: "DM Mono", monospace; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: 17px 30px; border: 2px solid var(--ink); border-radius: 0; cursor: pointer;
+    transition: background .18s ease, color .18s ease, box-shadow .18s ease, border-color .18s ease;
+    box-shadow: 5px 5px 0 rgba(29,42,50,.22);
+  }
+  .btn:hover { background: var(--orange); border-color: var(--orange); color: var(--ink); box-shadow: 2px 2px 0 rgba(29,42,50,.3); }
+  .hero-aside { font-size: .95rem; color: var(--ink-60); font-style: italic; max-width: 20em; }
+
+  /* collage */
+  .collage { position: relative; margin: 26px 0 0; height: 560px; }
+  .collage figure { position: absolute; width: min(340px, 44vw); transition: transform .3s ease; }
+  .collage figure:hover { transform: rotate(0deg) scale(1.02) !important; }
+  .collage img { width: 100%; display: block; box-shadow: 0 18px 44px rgba(29,42,50,.30); }
+  .collage figure::before {
+    content: ""; position: absolute; top: -16px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+    width: 110px; height: 32px; background: rgba(244,238,224,.82); border: 1px solid rgba(29,42,50,.12);
+    box-shadow: 0 2px 5px rgba(29,42,50,.12); z-index: 2;
+  }
+  .collage figure:nth-child(1) { left: 6%; top: 30px; transform: rotate(-3.2deg); }
+  .collage figure:nth-child(2) { right: 8%; top: 110px; transform: rotate(2.4deg); }
+  .collage figcaption { font-family: "DM Mono", monospace; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-60); margin-top: 12px; text-align: center; }
+  .collage .stamp {
+    position: absolute; right: 4%; top: 6px; transform: rotate(8deg);
+    border: 2.5px solid var(--teal); color: var(--teal); border-radius: 50%;
+    width: 128px; height: 128px; display: flex; align-items: center; justify-content: center; text-align: center;
+    font-family: "DM Mono", monospace; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: 14px; opacity: .85; z-index: 3; background: rgba(246,241,231,.6);
+  }
+
+  /* sections */
+  section { padding: 84px 0; }
+  .sec-head { display: flex; align-items: baseline; gap: 22px; border-top: 2px solid var(--rule); padding-top: 18px; margin-bottom: 48px; }
+  .sec-head .no { font-family: "DM Mono", monospace; font-size: .8rem; letter-spacing: .16em; color: var(--orange); white-space: nowrap; }
+  h2 { font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; }
+
+  /* week strip */
+  .week-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; align-items: start; }
+  .week-day { transition: transform .25s ease; }
+  .week-day:hover { transform: translateY(-6px); }
+  .week-day .mono { display: block; color: var(--teal); margin-bottom: 12px; }
+  .week-day img { width: 100%; display: block; box-shadow: 0 10px 28px rgba(29,42,50,.22); }
+  .week-day:nth-child(1) img { transform: rotate(-1.2deg); }
+  .week-day:nth-child(2) img { transform: rotate(.8deg); }
+  .week-day:nth-child(3) img { transform: rotate(-.7deg); }
+  .week-day:nth-child(4) img { transform: rotate(1.1deg); }
+  .caption-sample { margin-top: 54px; max-width: 680px; border-left: 3px solid var(--orange); padding: 6px 0 6px 28px; }
+  .caption-sample .mono { color: var(--ink-60); display: block; margin-bottom: 14px; }
+  .caption-sample p { font-size: 1.22rem; line-height: 1.6; }
+  .caption-sample p + p { margin-top: 14px; }
+
+  /* index list */
+  .index-list { border-top: 1px solid rgba(29,42,50,.25); }
+  .index-row { display: grid; grid-template-columns: 110px minmax(0,.85fr) minmax(0,1.15fr); gap: 30px; padding: 34px 0; border-bottom: 1px solid rgba(29,42,50,.25); align-items: baseline; transition: background .25s ease; }
+  .index-row:hover { background: rgba(232,137,74,.06); }
+  .index-row .num { font-family: "Fraunces", serif; font-style: italic; font-weight: 500; font-size: 2.6rem; color: var(--orange); line-height: 1; }
+  .index-row h3 { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.5rem; }
+  .index-row p { color: var(--ink-60); font-size: 1.08rem; }
+
+  /* manifest */
+  .manifest { columns: 2; column-gap: 64px; }
+  .mn { break-inside: avoid; display: grid; grid-template-columns: 54px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px dotted rgba(29,42,50,.4); }
+  .mn .mono { color: var(--teal); padding-top: 5px; }
+  .mn strong { font-family: "Fraunces", serif; font-weight: 600; font-size: 1.18rem; display: block; }
+  .mn span { color: var(--ink-60); font-size: 1.02rem; }
+
+  /* twin brand demo */
+  .twin-grid { display: grid; grid-template-columns: 1fr 1fr 1.1fr; gap: 40px; align-items: center; }
+  .twin img { width: 100%; display: block; box-shadow: 0 14px 36px rgba(29,42,50,.25); transition: transform .25s ease; }
+  .twin:hover img { transform: scale(1.02); }
+  .twin:nth-child(1) img { transform: rotate(-1.3deg); }
+  .twin:nth-child(2) img { transform: rotate(1.1deg); }
+  .twin .mono { margin-top: 14px; text-align: center; color: var(--ink-60); }
+
+  /* vibe bands */
+  .vibe { position: relative; min-height: 400px; display: flex; align-items: center; background-size: cover; background-position: center; background-color: var(--ink); background-blend-mode: luminosity; }
+  .vibe::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,28,34,.72), rgba(20,42,53,.55) 45%, rgba(20,28,34,.8)); }
+  .vibe::after { content: ""; position: absolute; inset: 0; opacity: .5; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .14 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .vibe .wrap { z-index: 1; }
+  .vibe .wrap { position: relative; width: 100%; }
+  .vibe p.line { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: clamp(1.9rem, 4.4vw, 3.2rem); line-height: 1.15; color: #fdfaf4; max-width: 17em; text-shadow: 0 2px 24px rgba(0,0,0,.45); }
+  .vibe p.line em { font-style: italic; color: var(--orange); }
+  .vibe .mono { color: rgba(253,250,244,.8); display: block; margin-bottom: 18px; }
+
+  /* compare */
+  .compare { border: 2px solid var(--rule); }
+  .compare-row { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .compare-row + .compare-row { border-top: 1px solid rgba(29,42,50,.3); }
+  .compare-cell { padding: 26px 28px; }
+  .compare-cell + .compare-cell { border-left: 1px solid rgba(29,42,50,.3); }
+  .compare-row.head .compare-cell { background: var(--paper-deep); font-family: "Fraunces", serif; font-weight: 600; font-size: 1.25rem; }
+  .compare-row.head .compare-cell.us { background: var(--ink); color: var(--paper); }
+  .compare-cell .mono { color: var(--teal); display: block; margin-bottom: 8px; }
+  .compare-cell p { color: var(--ink-60); font-size: 1.02rem; }
+  .compare-cell.us p { color: var(--ink); }
+  .compare-cell.us { background: rgba(232,137,74,.10); }
+
+  /* pricing */
+  .pricing { background: var(--paper-deep); border-top: 2px solid var(--rule); border-bottom: 2px solid var(--rule); }
+  .price-line { font-family: "Fraunces", serif; font-weight: 600; font-size: clamp(2rem, 5vw, 3.6rem); line-height: 1.15; max-width: 18em; }
+  .price-line em { font-style: italic; font-weight: 500; color: var(--teal); }
+  .price-line .hl { background: linear-gradient(transparent 58%, rgba(232,137,74,.5) 58%); }
+  .price-note { margin-top: 26px; color: var(--ink-60); font-size: 1.05rem; max-width: 36em; }
+
+  /* faq */
+  .faq { max-width: 760px; }
+  .faq details { border-bottom: 1px solid rgba(29,42,50,.3); }
+  .faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 24px 0; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.3rem; transition: color .2s ease; }
+  .faq summary:hover { color: var(--teal); }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-family: "DM Mono", monospace; font-size: 1.2rem; color: var(--orange); flex: none; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq details p { padding: 0 0 26px; color: var(--ink-60); font-size: 1.08rem; max-width: 40em; }
+
+  /* waitlist */
+  form.waitlist { max-width: 720px; margin-top: 8px; }
+  .field { display: grid; grid-template-columns: 150px 1fr; gap: 20px; align-items: baseline; padding: 20px 0; border-bottom: 1px solid rgba(29,42,50,.45); }
+  .field label { font-family: "DM Mono", monospace; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-60); }
+  .field input { border: none; background: transparent; font-family: "Newsreader", serif; font-size: 1.25rem; color: var(--ink); width: 100%; padding: 4px 0; }
+  .field input::placeholder { color: rgba(85,99,109,.5); font-style: italic; }
+  .field input:focus { outline: none; }
+  .field:focus-within { border-bottom-color: var(--orange); border-bottom-width: 2px; }
+  form.waitlist .btn { margin-top: 34px; }
+  .form-msg { margin-top: 20px; font-style: italic; color: var(--teal); min-height: 1.5em; }
+  .ps { margin-top: 48px; font-size: 1.05rem; font-style: italic; color: var(--ink-60); max-width: 34em; }
+
+  footer { border-top: 2px solid var(--rule); padding: 36px 0 56px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; align-items: baseline; }
+  footer p { color: var(--ink-60); font-size: .98rem; }
+
+  @media (max-width: 860px) {
+    .hero { padding-top: 56px; }
+    .hero-row { grid-template-columns: 1fr; gap: 26px; }
+    .collage { height: auto; display: flex; flex-direction: column; gap: 40px; align-items: center; padding-top: 20px; }
+    .collage figure { position: static; width: min(320px, 78vw); }
+    .collage figure:nth-child(1) { transform: rotate(-2.4deg); }
+    .collage figure:nth-child(2) { transform: rotate(2deg); }
+    .collage .stamp { position: static; transform: rotate(6deg); margin: 8px auto 0; }
+    .week-strip { grid-template-columns: 1fr 1fr; gap: 30px 20px; }
+    .index-row { grid-template-columns: 64px 1fr; }
+    .index-row p { grid-column: 2; }
+    .manifest { columns: 1; }
+    .twin-grid { grid-template-columns: 1fr 1fr; }
+    .twin-copy { grid-column: 1 / -1; }
+    .compare-row { grid-template-columns: 1fr; }
+    .compare-cell + .compare-cell { border-left: none; border-top: 1px solid rgba(29,42,50,.3); }
+    .field { grid-template-columns: 1fr; gap: 8px; }
+    section { padding: 64px 0; }
+  }
+</style>
+</head>
+<body>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="mono">SoldSocial.ai &nbsp;★&nbsp; Done-for-you social for real estate agents &nbsp;★&nbsp; Your voice. Your brand. Your market. &nbsp;★&nbsp; Founding roster now forming &nbsp;★&nbsp; </span><span class="mono">SoldSocial.ai &nbsp;★&nbsp; Done-for-you social for real estate agents &nbsp;★&nbsp; Your voice. Your brand. Your market. &nbsp;★&nbsp; Founding roster now forming &nbsp;★&nbsp; </span>
+  </div>
+</div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <a class="logo" href="#top">SoldSocial<span class="dot">.ai</span></a>
+    <span style="display:flex; gap:26px;">
+      <a class="cta app-link" href="http://localhost:3005" style="border-bottom-color: var(--teal);">See it in action</a>
+      <a class="cta" href="#waitlist">Join the waitlist</a>
+    </span>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <div class="kicker mono">Done-for-you social, built for agents</div>
+      <h1>The agent they keep seeing is the agent they <span class="fancy">call</span>.</h1>
+      <div class="hero-row">
+        <div>
+          <p class="lede">Listings go to agents who stay top of mind. SoldSocial writes, designs, and schedules your social content so you are the one they remember. <strong>You look it over, say yes, and go back to your showings.</strong></p>
+          <div class="hero-actions">
+            <a class="btn" href="#waitlist">Get early access</a>
+            <a class="cta app-link" href="http://localhost:3005" style="font-family: 'DM Mono', monospace; font-size: .85rem; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; border-bottom: 2px solid var(--teal); padding-bottom: 2px;">Tour the product</a>
+            <span class="hero-aside">No blank caption box. No design apps. No Sunday night scramble.</span>
+          </div>
+        </div>
+      </div>
+      <div class="collage">
+        <figure>
+          <img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-market.jpg" alt="Branded market update card built by SoldSocial for a sample agent">
+          <figcaption>Market update, agent-branded</figcaption>
+        </figure>
+        <figure>
+          <img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-listing.jpg" alt="Just Listed announcement card with a twilight photo of a craftsman home">
+          <figcaption>Just Listed, day one of seven</figcaption>
+        </figure>
+        <div class="stamp">Real engine output · sample profile</div>
+      </div>
+    </div>
+  </div>
+
+  <section id="week">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 01</span>
+        <h2>What a week of you looks like.</h2>
+      </div>
+      <div class="week-strip">
+        <div class="week-day rv"><span class="mono">Mon · Market update</span><img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-market.jpg" alt="Monday market update card" loading="lazy"></div>
+        <div class="week-day rv"><span class="mono">Wed · Seller school</span><img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-tip.jpg" alt="Wednesday seller education card" loading="lazy"></div>
+        <div class="week-day rv"><span class="mono">Fri · Just listed</span><img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-listing.jpg" alt="Friday Just Listed card" loading="lazy"></div>
+        <div class="week-day rv"><span class="mono">Sat · Open house</span><img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-openhouse.jpg" alt="Saturday open house card" loading="lazy"></div>
+      </div>
+      <div class="caption-sample rv">
+        <span class="mono">And the caption that rides with Wednesday's card:</span>
+        <p>"Here's the real answer. A long inspection report scares buyers. A 1994 kitchen does not. Fix the leak, service the furnace, handle the scary stuff, and leave the counters alone. You are not selling a kitchen. You are selling certainty."</p>
+        <p class="mono" style="margin-top:16px;">Written by the engine, in the sample agent's voice, from their profile.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="vibe" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_39SFFiM3vZ7Ph5EF2IVQkOhLdVI/hf_20260814_020152_759040e0-bb73-4ea0-9af7-3bd40b97de14_min.webp');" aria-label="Neighborhood at dusk">
+    <div class="wrap">
+      <span class="mono">The whole point</span>
+      <p class="line">You already know these streets. We make sure <em>they know you.</em></p>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 02</span>
+        <h2>Set up once. Show up every day.</h2>
+      </div>
+      <div class="index-list">
+        <div class="index-row rv">
+          <div class="num">01</div>
+          <h3>Tell us about you</h3>
+          <p>One conversation covers your market, your niche, how you actually talk, and your branding. That becomes your profile, and every post is built from it. If you would never say "dream home," neither will we.</p>
+        </div>
+        <div class="index-row rv">
+          <div class="num">02</div>
+          <h3>We build your month</h3>
+          <p>Market updates with your market's real numbers. Neighborhood posts. Buyer and seller education. Your listings, turned into a week of content each. Designed with your colors, your headshot, your logo.</p>
+        </div>
+        <div class="index-row rv">
+          <div class="num">03</div>
+          <h3>You approve, it posts</h3>
+          <p>Everything lands in a scheduled queue before it goes live. Change a word, swap a photo, or approve the whole month over one coffee. Nothing posts without your yes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="included">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 03</span>
+        <h2>The full presence, not just captions.</h2>
+      </div>
+      <div class="manifest rv">
+        <div class="mn"><span class="mono">a.</span><div><strong>Posts in your voice</strong><span>Written from your profile, not generic filler any agent in any city could post.</span></div></div>
+        <div class="mn"><span class="mono">b.</span><div><strong>Branded design, handled</strong><span>Your colors, headshot, and logo on every card. You never open a design tool.</span></div></div>
+        <div class="mn"><span class="mono">c.</span><div><strong>Listing cascades</strong><span>One listing becomes a week of content: Just Listed, feature spotlights, open house, Just Sold.</span></div></div>
+        <div class="mn"><span class="mono">d.</span><div><strong>Local market cards</strong><span>Your market's numbers, designed so people actually stop scrolling. You become the source.</span></div></div>
+        <div class="mn"><span class="mono">e.</span><div><strong>Every platform, one queue</strong><span>Instagram, Facebook, LinkedIn, TikTok, and X, scheduled from one place.</span></div></div>
+        <div class="mn"><span class="mono">f.</span><div><strong>A human in the loop</strong><span>AI does the heavy lifting. A real strategist reviews everything before you ever see it.</span></div></div>
+        <div class="mn"><span class="mono">g.</span><div><strong>Carousels and real photos</strong><span>Swipeable carousels, weekly photo prompts from your actual life, and a hard cap on designed graphics. Your feed never reads as made-by-a-tool.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="yours" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 04</span>
+        <h2>Your brand. Not our template.</h2>
+      </div>
+      <div class="twin-grid rv">
+        <div class="twin">
+          <img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-market.jpg" alt="Market update card in a bold navy and orange brand" loading="lazy">
+          <p class="mono">Sans serif · navy · bold</p>
+        </div>
+        <div class="twin">
+          <img src="https://raw.githubusercontent.com/SavvyRachael25/soldsocial-assets/main/sample-market-lux.jpg" alt="The same market update card in a luxury forest green and gold serif brand" loading="lazy">
+          <p class="mono">Serif · forest · luxury</p>
+        </div>
+        <div class="twin-copy">
+          <p class="lede">These are the <strong>same post from the same engine.</strong> Different agent, different brand kit: your colors, your fonts, your logo, your headshot, your voice. Set during onboarding, applied to everything, forever.</p>
+          <p class="price-note" style="margin-top:18px;">And two agents in the same market never get the same combination. Your feed should compete with the other agents in town, not match them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="versus">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 05</span>
+        <h2>Your three options, honestly.</h2>
+      </div>
+      <div class="compare rv">
+        <div class="compare-row head">
+          <div class="compare-cell">Do it yourself</div>
+          <div class="compare-cell">Freelancer or agency</div>
+          <div class="compare-cell us">SoldSocial</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell"><span class="mono">The cost</span><p>Free, except it eats your evenings and weekends, which are when your clients want to see homes.</p></div>
+          <div class="compare-cell"><span class="mono">The cost</span><p>Retainers, contracts, and per-post invoices. Quality varies with whoever picks up your account.</p></div>
+          <div class="compare-cell us"><span class="mono">The cost</span><p>$149 a month, flat. No contract, no setup fee, cancel whenever.</p></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell"><span class="mono">The reality</span><p>Strong for two weeks, then showings pick up and the feed goes quiet again.</p></div>
+          <div class="compare-cell"><span class="mono">The reality</span><p>They learn real estate on your dime, and you still chase them for edits.</p></div>
+          <div class="compare-cell us"><span class="mono">The reality</span><p>An engine that never gets busy, plus a human strategist who already knows real estate.</p></div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-cell"><span class="mono">Your job</span><p>All of it.</p></div>
+          <div class="compare-cell"><span class="mono">Your job</span><p>Briefs, feedback rounds, approvals, invoices.</p></div>
+          <div class="compare-cell us"><span class="mono">Your job</span><p>Say yes to a queue once a week. That is it.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="wrap">
+      <div class="sec-head rv" style="border-top: none; padding-top: 0;">
+        <span class="no">No. 06</span>
+        <h2>The pricing section</h2>
+      </div>
+      <p class="price-line rv">One plan. <span class="hl">$149 a month.</span> No contract, no setup fee, and no <em>"book a demo to see pricing."</em> You just saw it.</p>
+      <p class="price-note rv">Founding agents keep that rate for as long as they stay. When the roster fills, the price goes up for everyone after them, not for them.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 07</span>
+        <h2>Fair questions.</h2>
+      </div>
+      <div class="faq rv">
+        <details>
+          <summary>Will it actually sound like me?</summary>
+          <p>That is the whole point of the profile. We document how you talk, what you would never say, and even your emoji policy. Then every post is written from it, and nothing goes out without your approval. If a draft sounds like a marketer wrote it, it gets rewritten.</p>
+        </details>
+        <details>
+          <summary>Do I have to be on camera?</summary>
+          <p>No. The system is built around designed posts, your listings, and your market's numbers. If you love being on camera, great, we will schedule that too. If you would rather never film a talking head in your car, you never have to.</p>
+        </details>
+        <details>
+          <summary>What do you need from me?</summary>
+          <p>About an hour up front for the profile conversation, your headshot and logo, and your listing links when you have them. After that, a few minutes a week to approve the queue.</p>
+        </details>
+        <details>
+          <summary>Who is actually behind this?</summary>
+          <p>The Savvy Digital Co., a boutique digital studio. Real people, a real strategist reviewing your content, and an engine we built ourselves. Not a faceless app with a support ticket queue.</p>
+        </details>
+        <details>
+          <summary>Can I cancel?</summary>
+          <p>Yes. Month to month, no contract. Your accounts are yours, your content stays yours.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="vibe" style="background-image: url('https://d8j0ntlcm91z4.cloudfront.net/user_39SFFiM3vZ7Ph5EF2IVQkOhLdVI/hf_20260814_020152_460e5653-b4b8-4746-a1f4-8a9823d0b287_min.webp');" aria-label="Sold sign at golden hour">
+    <div class="wrap">
+      <span class="mono">Where this ends up</span>
+      <p class="line">Every sold sign starts with <em>being remembered.</em></p>
+    </div>
+  </section>
+
+  <section id="waitlist">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="no">No. 08</span>
+        <h2>Get on the founding roster.</h2>
+      </div>
+      <p class="lede rv" style="max-width: 34em;">We onboard a few agents at a time, because a human reviews everything and we intend to keep it that way. Tell us where to find you.</p>
+      <form class="waitlist" name="waitlist" novalidate>
+        <div class="field">
+          <label for="wl-name">Your name</label>
+          <input id="wl-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="wl-email">Email</label>
+          <input id="wl-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="wl-market">Your market</label>
+          <input id="wl-market" name="market" type="text" placeholder="Everett, WA">
+        </div>
+        <button class="btn" type="submit">Put me on the list</button>
+      </form>
+      <p class="form-msg" role="status" aria-live="polite"></p>
+      <p class="ps">P.S. If you are reading this at 11pm instead of posting, that is exactly the problem we are here for.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>SoldSocial.ai</strong>, a Savvy Digital Co. production. &copy; 2026.</p>
+    <p class="mono">Sample posts use a fictional agent profile.</p>
+  </div>
+</footer>
+
+<script>
+  // Host-aware wiring: localhost talks to the local app, staging talks to the
+  // staged app. TODO(launch): swap the staged URL for https://app.soldsocial.ai.
+  // localhost -> local app; vercel -> staged app; anywhere else (e.g. GitHub Pages) -> app not reachable, hide the links.
+  const APP_URL = location.hostname === "localhost" ? "http://localhost:3005"
+    : location.hostname.endsWith("vercel.app") ? "https://soldsocial-app.vercel.app"
+    : null;
+  const WAITLIST_ENDPOINT = APP_URL ? APP_URL + "/api/waitlist" : null;
+  document.querySelectorAll("a.app-link").forEach((a) => { if (APP_URL) { a.href = APP_URL; } else { a.style.display = "none"; } });
+  document.querySelector("form.waitlist").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const msg = document.querySelector(".form-msg");
+    if (!form.name.value.trim() || !form.email.value.includes("@")) {
+      msg.textContent = "A name and a real email and you are in.";
+      return;
+    }
+    if (!WAITLIST_ENDPOINT) {
+      msg.textContent = "The list opens with launch. For now, email rachael@thesavvydigitalco.com and you are in.";
+      return;
+    }
+    try {
+      const res = await fetch(WAITLIST_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: form.name.value, email: form.email.value, market: form.market.value, source: "soldsocial-waitlist" }) });
+      if (!res.ok) throw new Error("bad status");
+      msg.textContent = "You're on the list. Watch your inbox.";
+      form.reset();
+    } catch (err) {
+      msg.textContent = "Could not reach the list just now. Email rachael@thesavvydigitalco.com and you are in.";
+    }
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    for (const en of entries) if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+  }, { threshold: .15 });
+  document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
